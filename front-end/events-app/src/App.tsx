@@ -1,6 +1,5 @@
-import React from "react";
-import logo from "./logo.svg";
+import { MainRouter } from "./components/MainRouter";
 
 export const App = () => {
-  return <div className="App"></div>;
+  return <MainRouter />;
 };
