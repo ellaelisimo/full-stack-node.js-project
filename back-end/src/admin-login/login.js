@@ -1,17 +1,17 @@
 import express from "express";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import mysql from "mysql2/promise";
 import { MYSQL_CONFIG, jwt_Secret } from "../config.js";
 import jwt from "jsonwebtoken";
-import { userSchema } from "./registration.js";
+import { adminSchema } from "./adminRegistration.js";
 
 const router = express.Router();
 
 router.post("/login", async (req, res) => {
-  let userData = req.body;
+  let adminData = req.body;
 
   try {
-    userData = await userSchema.validateAsync(userData);
+    adminData = await adminSchema.validateAsync(adminData);
   } catch (error) {
     console.error(error);
     return res.status(400).send({ message: "Incorrect data send" }).end();
@@ -21,7 +21,7 @@ router.post("/login", async (req, res) => {
     const con = await mysql.createConnection(MYSQL_CONFIG);
 
     const [data] = await con.execute(
-      `SELECT * FROM users WHERE email = ${mysql.escape(userData.email)}`
+      `SELECT * FROM admin WHERE name = ${mysql.escape(adminData.name)}`
     );
 
     await con.end();
@@ -32,13 +32,13 @@ router.post("/login", async (req, res) => {
         .send({ message: "Please provide a valid email or password" })
         .end();
     }
-    const isAuthed = bcrypt.compareSync(userData.password, data[0].password);
+    const isAuthed = bcrypt.compareSync(adminData.password, data[0].password);
 
     if (isAuthed) {
       const token = jwt.sign(
         {
           id: data[0].id,
-          email: data[0].email,
+          name: data[0].name,
         },
         jwt_Secret
       );

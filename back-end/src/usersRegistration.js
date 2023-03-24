@@ -2,7 +2,7 @@ import express from "express";
 import Joi from "joi";
 import bcrypt from "bcrypt";
 import mysql from "mysql2/promise";
-import { MYSQL_CONFIG } from "../config.js";
+import { MYSQL_CONFIG } from "./config.js";
 
 const router = express.Router();
 
@@ -11,10 +11,9 @@ export const userSchema = Joi.object({
   surname: Joi.string().min(3).max(30).required(),
   email: Joi.string().email().trim().lowercase().required(),
   date_of_birth: Joi.date().required(),
-  password: Joi.string().required(),
 });
 
-router.post("/register", async (req, res) => {
+router.post("/user-registration", async (req, res) => {
   let userData = req.body;
   console.log(userData);
   try {
