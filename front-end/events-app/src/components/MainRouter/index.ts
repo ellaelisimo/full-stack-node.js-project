@@ -1,1 +1,0 @@
-export { MainRouter } from "./MainRouter";

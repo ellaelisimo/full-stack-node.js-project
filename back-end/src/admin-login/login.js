@@ -42,7 +42,7 @@ router.post("/login", async (req, res) => {
         },
         jwt_Secret
       );
-      return res.send({ msg: `Succesfully logged in ${token}` }).end();
+      return res.send({ msg: `Succesfully logged in`, token: token }).end();
     }
     return res.status(403).send({ error: "Invalid credentials" }).end();
   } catch (error) {
