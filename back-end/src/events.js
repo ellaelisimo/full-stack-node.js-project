@@ -7,6 +7,19 @@ const router = express.Router();
 router.get("/events", async (req, res) => {
   try {
     const con = await mysql.createConnection(MYSQL_CONFIG);
+    const [data] = await con.execute(`SELECT * FROM events`);
+
+    await con.end();
+    res.send(data);
+  } catch (error) {
+    console.error(error);
+    return res.status(401).send(error).end();
+  }
+});
+
+router.get("/events-with-participants", async (req, res) => {
+  try {
+    const con = await mysql.createConnection(MYSQL_CONFIG);
 
     const events = (await con.execute("select * from `events`"))[0];
 
@@ -25,3 +38,5 @@ router.get("/events", async (req, res) => {
     res.status(500).send(console.error({ error })).end();
   }
 });
+
+export default router;

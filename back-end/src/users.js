@@ -37,7 +37,7 @@ router.post("/users", async (req, res) => {
   try {
     const con = await mysql.createConnection(MYSQL_CONFIG);
     await con.execute(
-      `INSERT INTO users (name, surname, email, date_of_birth) VALUES (${name}, ${surname}, ${email}, ${date_of_birth})`
+      `INSERT INTO users (name, surname, email, date_of_birth) VALUES ('${name}', '${surname}', '${email}', '${date_of_birth}')`
     );
 
     await con.end();
