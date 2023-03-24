@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { jwt_Secret, MYSQL_CONFIG } from "./config.js";
+import { jwt_Secret, MYSQL_CONFIG } from "../config.js";
 import jwt from "jsonwebtoken";
 import mysql from "mysql2/promise";
 

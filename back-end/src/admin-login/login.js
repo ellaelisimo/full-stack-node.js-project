@@ -1,7 +1,7 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import mysql from "mysql2/promise";
-import { MYSQL_CONFIG, jwt_Secret } from "./config.js";
+import { MYSQL_CONFIG, jwt_Secret } from "../config.js";
 import jwt from "jsonwebtoken";
 import { userSchema } from "./registration.js";
 
