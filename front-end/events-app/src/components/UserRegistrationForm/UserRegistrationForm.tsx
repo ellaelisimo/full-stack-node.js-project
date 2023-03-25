@@ -9,7 +9,7 @@ export const UserRegistrationForm = () => {
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [age, setAge] = useState("");
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     axios
@@ -22,12 +22,15 @@ export const UserRegistrationForm = () => {
       })
       .then((res) => {
         console.log(res.data);
+        if (res.status === 200) {
+          return <Navigate to={"/events"} />;
+        }
+      })
+      .catch((error) => {
+        console.error(error);
       });
-
-    if (res === 200) {
-      return <Navigate to={"/events"} />;
-    }
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="name">Name</label>
