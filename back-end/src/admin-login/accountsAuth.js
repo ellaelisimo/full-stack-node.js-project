@@ -16,17 +16,17 @@ export const isLoggedIn = (req, res, next) => {
   }
 };
 
-router.get("/events", isLoggedIn, async (req, res) => {
-  try {
-    const con = await mysql.createConnection(MYSQL_CONFIG);
-    const [data] = await con.execute(`SELECT * FROM events`);
+// router.get("/events", isLoggedIn, async (req, res) => {
+//   try {
+//     const con = await mysql.createConnection(MYSQL_CONFIG);
+//     const [data] = await con.execute(`SELECT * FROM events`);
 
-    await con.end();
-    res.send(data);
-  } catch (error) {
-    console.error(error);
-    return res.status(401).send({ message: "You are not in our base" }).end();
-  }
-});
+//     await con.end();
+//     res.send(data);
+//   } catch (error) {
+//     console.error(error);
+//     return res.status(401).send({ message: "You are not in our base" }).end();
+//   }
+// });
 
 export default router;
