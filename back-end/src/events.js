@@ -17,6 +17,20 @@ router.get("/events", async (req, res) => {
   }
 });
 
+router.get("/events/:eventId", async (req, res) => {
+  try {
+    const { eventId } = req.params;
+    const con = await mysql.createConnection(MYSQL_CONFIG);
+    const event = `select * from events where id = ${eventId}`;
+
+    const result = await con.execute(event);
+
+    res.send(result[0]).end();
+  } catch (error) {
+    res.status(500).send(console.error({ error })).end();
+  }
+});
+
 router.get("/events-with-participants", async (req, res) => {
   try {
     const con = await mysql.createConnection(MYSQL_CONFIG);

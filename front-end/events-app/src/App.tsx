@@ -11,8 +11,8 @@ export const App = () => {
       <Header />
 
       <Routes>
-        <Route index element={<Navigate to="/events" />} />
         <Route path="/login" element={<LoginForm />} />
+        <Route index element={<Navigate to="/events" />} />
         <Route path="/events" element={<Events />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/*" element={<NotFoundPage />} />
