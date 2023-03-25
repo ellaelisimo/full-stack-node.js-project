@@ -1,2 +1,3 @@
 export { Events } from "./Events";
-export { Event } from "./Event";
+export { EventCard } from "./EventCard";
+export { EventDetails } from "./EventDetails";

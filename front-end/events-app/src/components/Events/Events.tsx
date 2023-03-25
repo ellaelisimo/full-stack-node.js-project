@@ -1,44 +1,37 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
+import { EventCard } from "./EventCard";
 
 export const Events = () => {
-  const isLoggedIn = localStorage.getItem("token") ? true : false;
-
-  if (!isLoggedIn) {
-    return <Navigate to={"/login"} />;
-  }
   const [events, setEvents] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const token = localStorage.getItem("token");
+  const isLoggedIn = token ? true : false;
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/events")
-      .then((res) => {
-        setEvents(res.data);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setIsLoading(false);
-      });
-  }, []);
+    if (!isLoggedIn) {
+      return;
+    }
 
-  if (isLoading) {
-    return <h1>Loading...</h1>;
+    fetch("http://localhost:5000/events", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setEvents(data);
+      });
+  }, [isLoggedIn, token]);
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" />;
   }
 
   return (
-    <div>
+    <>
       <h1>Events</h1>
-      <ul>
-        {events.map((event) => (
-          <li key={event.id}>
-            {event.name} - {new Date(event.date_starts).toLocaleDateString()} to{" "}
-            {new Date(event.date_ends).toLocaleDateString()}
-          </li>
-        ))}
-      </ul>
-    </div>
+      {events.map((event: any) => (
+        <EventCard key={event.id} event={event} />
+      ))}
+    </>
   );
 };
