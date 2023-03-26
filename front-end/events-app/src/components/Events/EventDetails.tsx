@@ -5,11 +5,7 @@ import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Participant } from "../Participant";
-
-interface EventImage {
-  id: number;
-  imageUrl: string;
-}
+import type { EventImage } from "./types";
 
 export const EventDetails = () => {
   const { id } = useParams();
