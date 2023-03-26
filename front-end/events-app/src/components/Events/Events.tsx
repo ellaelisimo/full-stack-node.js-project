@@ -1,3 +1,4 @@
+import { Box, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { EventCard } from "./EventCard";
 
@@ -22,10 +23,17 @@ export const Events = () => {
 
   return (
     <>
-      <h1>Events</h1>
-      {events.map((event: any) => (
-        <EventCard key={event.id} event={event} />
-      ))}
+      <Box>
+        <Grid>
+          <Typography variant="h1" fontSize="35px">
+            Events
+          </Typography>
+
+          {events.map((event: any) => (
+            <EventCard key={event.id} event={event} />
+          ))}
+        </Grid>
+      </Box>
     </>
   );
 };

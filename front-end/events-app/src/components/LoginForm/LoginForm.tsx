@@ -1,9 +1,9 @@
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export const LoginForm = () => {
   const [name, setName] = useState("");
@@ -65,15 +65,17 @@ export const LoginForm = () => {
             </Typography>
             <input value={password} onChange={handlePasswordChange} />
 
-            <button
-              className="login-button"
-              // variant="contained"
-              // color="success"
-              // size="small"
-              // sx={{ marginTop: "15px" }}
+            <button>Login</button>
+
+            {/* 
+            <Button
+              variant="contained"
+              color="success"
+              size="small"
+              sx={{ marginTop: "15px" }}
             >
               Login
-            </button>
+            </Button> */}
           </form>
         </Grid>
       </Box>
