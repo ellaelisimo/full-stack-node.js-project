@@ -1,3 +1,6 @@
+import { Grid } from "@mui/material";
+import { Box } from "@mui/material";
+import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -31,15 +34,49 @@ export const LoginForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name</label>
-        <input value={name} onChange={handleChange} />
+      <Box
+        role="login-form"
+        textAlign="center"
+        display="flex"
+        justifyContent="center"
+      >
+        <Grid
+          container
+          display="flex"
+          flexDirection="column"
+          height="350px"
+          width="250px"
+          padding="20px"
+          border="2px solid black"
+          borderRadius="10px"
+        >
+          <form onSubmit={handleSubmit}>
+            <Typography variant="body1" fontSize="20px" padding="10px">
+              Sign In
+            </Typography>
 
-        <label htmlFor="password">Password</label>
-        <input value={password} onChange={handlePasswordChange} />
+            <Typography variant="body1" fontSize="15px" padding="10px">
+              Name
+            </Typography>
+            <input value={name} onChange={handleChange} />
 
-        <button>Login</button>
-      </form>
+            <Typography variant="body1" fontSize="15px" padding="10px">
+              Password
+            </Typography>
+            <input value={password} onChange={handlePasswordChange} />
+
+            <button
+              className="login-button"
+              // variant="contained"
+              // color="success"
+              // size="small"
+              // sx={{ marginTop: "15px" }}
+            >
+              Login
+            </button>
+          </form>
+        </Grid>
+      </Box>
     </>
   );
 };

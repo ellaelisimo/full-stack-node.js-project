@@ -34,13 +34,13 @@ export const CreateUser = () => {
     }
 
     if (e.target.name === "events") {
-      const event_ids = Array.from(e.selectedOptions).map((option: any) =>
-        parseInt(option.value)
+      const event_ids = Array.from(e.target.selectedOptions).map(
+        (option: any) => parseInt(option.value)
       );
       console.log(event_ids);
 
       delete newUser.events;
-      newUser = { ...newUser, event_ids };
+      newUser = { ...newUser, event_ids: event_ids };
     }
 
     setUser(newUser);
@@ -109,11 +109,12 @@ export const CreateUser = () => {
 
         <label htmlFor="events">Events</label>
         <select name="events" multiple onChange={handleChange}>
-          {events.map((event: any) => (
-            <option key={event.id} value={event.id}>
-              {event.name}
-            </option>
-          ))}
+          {events &&
+            events.map((event: any) => (
+              <option key={event.id} value={event.id}>
+                {event.name}
+              </option>
+            ))}
         </select>
 
         <button>Create User</button>

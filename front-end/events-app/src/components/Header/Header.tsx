@@ -1,11 +1,41 @@
+import { Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
 import { NavLink } from "react-router-dom";
 
 export const Header = () => {
   return (
-    <nav>
-      <NavLink to={"/events"}>Events</NavLink>
-      <NavLink to={"/users"}>Users</NavLink>
-      <NavLink to={"/logout"}>Logout</NavLink>
-    </nav>
+    <Grid
+      margin="40px"
+      textAlign="center"
+      display="flex"
+      flexDirection="column"
+      justifyContent="space-between"
+      paddingBottom="10px"
+      sx={{
+        "& a": {
+          color: "black",
+          textDecoration: "none",
+          fontSize: "18px",
+
+          ":hover": { color: "grey" },
+        },
+      }}
+    >
+      <nav>
+        <Box>
+          <NavLink to={"/events"}>Events</NavLink>
+        </Box>
+
+        <Box>
+          <NavLink to={"/users"}>Users</NavLink>
+        </Box>
+
+        <Box>
+          <NavLink to={"/logout"}>Logout</NavLink>
+        </Box>
+      </nav>
+    </Grid>
   );
 };

@@ -6,7 +6,6 @@ export const EventDetails = () => {
   const { id } = useParams();
   const [event, setEvent] = useState<any>({});
   const token = localStorage.getItem("token");
-  const isLoggedIn = token ? true : false;
 
   useEffect(() => {
     if (!token) {
