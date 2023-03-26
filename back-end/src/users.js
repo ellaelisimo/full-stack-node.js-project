@@ -32,13 +32,48 @@ router.get("/users/:userId", async (req, res) => {
 });
 
 router.post("/users", async (req, res) => {
-  const { name, surname, email, date_of_birth } = req.body;
+  const { name, surname, email, date_of_birth, event_ids } = req.body;
+
+  if (
+    !name ||
+    !surname ||
+    !email ||
+    !date_of_birth ||
+    event_ids === undefined
+  ) {
+    return res
+      .status(400)
+      .send({
+        error: "name, surname, email, date_of_birth and event_ids are required",
+      })
+      .end();
+  }
+
+  if (
+    !Array.isArray(event_ids) ||
+    event_ids.some((id) => typeof id !== "number")
+  ) {
+    return res
+      .status(400)
+      .send({
+        error: "event_ids should be an array of numbers",
+      })
+      .end();
+  }
 
   try {
     const con = await mysql.createConnection(MYSQL_CONFIG);
-    await con.execute(
-      `INSERT INTO users (name, surname, email, date_of_birth) VALUES ('${name}', '${surname}', '${email}', '${date_of_birth}')`
+    const [addedUser] = await con.execute(
+      "INSERT INTO users (name, surname, email, date_of_birth) VALUES (?, ?, ?, ?)",
+      [name, surname, email, date_of_birth]
     );
+
+    event_ids.map(async (event_id) => {
+      await con.execute(
+        "INSERT INTO event_participants (user_id, event_id, date_of_registration) VALUES (?, ?, NOW())",
+        [addedUser.insertId, event_id]
+      );
+    });
 
     await con.end();
 

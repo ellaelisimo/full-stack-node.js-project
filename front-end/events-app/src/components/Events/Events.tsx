@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
 import { EventCard } from "./EventCard";
 
 export const Events = () => {
   const [events, setEvents] = useState([]);
   const token = localStorage.getItem("token");
-  const isLoggedIn = token ? true : false;
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!token) {
       return;
     }
 
@@ -20,11 +18,7 @@ export const Events = () => {
         console.log(data);
         setEvents(data);
       });
-  }, [isLoggedIn, token]);
-
-  if (!isLoggedIn) {
-    return <Navigate to="/login" />;
-  }
+  }, [token]);
 
   return (
     <>
