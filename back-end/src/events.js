@@ -11,6 +11,7 @@ router.get("/events", isLoggedIn, async (req, res) => {
     const [data] = await con.execute(`SELECT * FROM events`);
 
     await con.end();
+
     res.send(data);
   } catch (error) {
     console.error(error);
@@ -42,5 +43,30 @@ event_participants.date_of_registration from users inner join event_participants
     res.status(500).send(console.error({ error })).end();
   }
 });
+
+// router.post("/create-event", async (req, res) => {
+//   const { name, date_starts, date_ends } = req.body;
+
+//   if (!name || !date_starts || !date_ends) {
+//     return res
+//       .status(400)
+//       .send({ error: "Name, date_starts and date_ends are required." })
+//       .end();
+//   }
+
+//   try {
+//     const con = await mysql.createConnection(MYSQL_CONFIG);
+//     await con.execute(
+//       `INSERT INTO events (name, date_starts, date_ends) VALUES (?, ?, ?)`,
+//       [name, date_starts, date_ends]
+//     );
+
+//     await con.end();
+
+//     res.status(200).send({ message: "Event created" }).end();
+//   } catch (error) {
+//     res.status(500).send(console.error({ error })).end();
+//   }
+// });
 
 export default router;

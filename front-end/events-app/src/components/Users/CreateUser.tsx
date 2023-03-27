@@ -1,3 +1,5 @@
+import { Button, Grid, Input, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -64,61 +66,97 @@ export const CreateUser = () => {
 
   return (
     <>
-      <h1>Create User</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          name="name"
-          value={user.name}
-          onChange={handleChange}
-        />
+      <Box justifyContent="center" alignContent="center">
+        <Typography
+          variant="h1"
+          component="h1"
+          sx={{ textAlign: "center", margin: "1rem" }}
+        >
+          Create User
+        </Typography>
+        <Grid
+          container
+          display="flex"
+          // textAlign="center"
+          justifyContent="center"
+          alignItems="center"
+          flexDirection="column"
+          height="550px"
+          width="250px"
+          padding="30px"
+          border="2px solid #90caf9"
+          borderRadius="10px"
+          boxShadow="5px 5px 5px #90caf9"
+          marginLeft={{ xs: "0", md: "34rem" }}
+        >
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="name">Name</label>
+            <Input
+              sx={{ marginBottom: "10px" }}
+              type="text"
+              name="name"
+              value={user.name}
+              onChange={handleChange}
+            />
 
-        <label htmlFor="surname">Surname</label>
-        <input
-          type="text"
-          name="surname"
-          value={user.surname}
-          onChange={handleChange}
-        />
+            <label htmlFor="surname">Surname</label>
+            <Input
+              sx={{ marginBottom: "10px" }}
+              type="text"
+              name="surname"
+              value={user.surname}
+              onChange={handleChange}
+            />
 
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          name="email"
-          value={user.email}
-          onChange={handleChange}
-        />
+            <label htmlFor="email">Email</label>
+            <Input
+              sx={{ marginBottom: "10px" }}
+              type="email"
+              name="email"
+              value={user.email}
+              onChange={handleChange}
+            />
 
-        <label htmlFor="date_of_birth">Date of Birth</label>
-        <input
-          type="date"
-          name="date_of_birth"
-          value={user.date_of_birth}
-          onChange={handleChange}
-        />
+            <label htmlFor="date_of_birth">Date of Birth</label>
+            <Input
+              sx={{ marginBottom: "10px" }}
+              type="date"
+              name="date_of_birth"
+              value={user.date_of_birth}
+              onChange={handleChange}
+            />
 
-        <label htmlFor="age">Age</label>
-        <input
-          type="number"
-          name="age"
-          value={user.age}
-          readOnly
-          onChange={handleChange}
-        />
+            <label htmlFor="age">Age</label>
+            <Input
+              sx={{ marginBottom: "10px" }}
+              type="number"
+              name="age"
+              value={user.age}
+              readOnly
+              onChange={handleChange}
+            />
 
-        <label htmlFor="events">Events</label>
-        <select name="events" multiple onChange={handleChange}>
-          {events &&
-            events.map((event: any) => (
-              <option key={event.id} value={event.id}>
-                {event.name}
-              </option>
-            ))}
-        </select>
+            <label htmlFor="events">Events</label>
+            <select name="events" multiple onChange={handleChange}>
+              {events &&
+                events.map((event: any) => (
+                  <option key={event.id} value={event.id}>
+                    {event.name}
+                  </option>
+                ))}
+            </select>
 
-        <button>Create User</button>
-      </form>
+            <Button
+              variant="contained"
+              type="submit"
+              size="small"
+              sx={{ marginTop: "15px" }}
+            >
+              Create User
+            </Button>
+          </form>
+        </Grid>
+      </Box>
     </>
   );
 };

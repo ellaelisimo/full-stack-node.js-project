@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -66,51 +67,64 @@ export const EventDetails = () => {
 
   return (
     <>
-      <Card>
-        <CardMedia
-          sx={{
-            height: "250px",
-            width: "300px",
-            title: "Event Image",
-          }}
-        >
-          <source srcSet={eventImage?.imageUrl} />
-          <img
-            src={eventImage?.imageUrl}
-            alt="Event Image"
-            style={{ width: "800px", height: "500px" }}
-          />
-        </CardMedia>
-        <CardContent
-          sx={{
-            marginTop: "250px",
-          }}
-        >
-          <Typography variant="h2" color="green">
-            {event.name}
-          </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexWrap: "nowrap",
+          flexDirection: { xs: "column", sm: "row" },
+        }}
+      >
+        <Card>
+          <CardMedia
+            sx={{
+              height: "250px",
+              width: "800px",
+              title: "Event Image",
+              marginTop: "50px",
+            }}
+          >
+            <source srcSet={eventImage?.imageUrl} />
+            <img
+              src={eventImage?.imageUrl}
+              alt="Event Image"
+              style={{ maxWidth: "100%", height: "auto" }}
+            />
+          </CardMedia>
+          <CardContent
+            sx={{
+              marginTop: "250px",
+            }}
+          >
+            <Typography variant="h2" color="green">
+              {event.name}
+            </Typography>
 
-          <Typography variant="h3" fontSize="35px">
-            Id: {event.id}
-          </Typography>
+            <Typography variant="h3" fontSize="20px">
+              Id: {event.id}
+            </Typography>
 
-          <Typography variant="h3" fontSize="35px">
-            Date starts: {event.date_starts}
-          </Typography>
+            <Typography variant="h3" fontSize="20px">
+              Date starts: {event.date_starts}
+            </Typography>
 
-          <Typography variant="h3" fontSize="35px">
-            Date ends: {event.date_ends}
-          </Typography>
+            <Typography variant="h3" fontSize="20px">
+              Date ends: {event.date_ends}
+            </Typography>
 
-          <Typography variant="h3" fontSize="35px" paddingTop="15px">
-            Participants:
-          </Typography>
+            <Typography variant="h3" fontSize="20px" paddingTop="15px">
+              Participants:
+            </Typography>
 
-          {event.participants.map((participant: any) => (
-            <Participant key={participant.id} participant={participant} />
-          ))}
-        </CardContent>
-      </Card>
+            {event.participants.map((participant: any) => (
+              <Box>
+                <Participant key={participant.id} participant={participant} />
+              </Box>
+            ))}
+          </CardContent>
+        </Card>
+      </Box>
     </>
   );
 };

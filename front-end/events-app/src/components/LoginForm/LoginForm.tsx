@@ -1,6 +1,5 @@
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Input } from "@mui/material";
 import { Box } from "@mui/material";
-import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useState } from "react";
@@ -40,6 +39,7 @@ export const LoginForm = () => {
         textAlign="center"
         display="flex"
         justifyContent="center"
+        marginTop="50px"
       >
         <Grid
           container
@@ -48,35 +48,32 @@ export const LoginForm = () => {
           height="350px"
           width="250px"
           padding="20px"
-          border="2px solid black"
+          border="2px solid #90caf9"
           borderRadius="10px"
+          boxShadow="5px 5px 5px #90caf9"
         >
           <form onSubmit={handleSubmit}>
             <Typography variant="body1" fontSize="20px" padding="10px">
               Sign In
             </Typography>
 
-            <Typography variant="body1" fontSize="15px" padding="10px">
-              Name
-            </Typography>
-            <input value={name} onChange={handleChange} />
+            <Input value={name} onChange={handleChange} placeholder="Name" />
 
-            <Typography variant="body1" fontSize="15px" padding="10px">
-              Password
-            </Typography>
-            <input value={password} onChange={handlePasswordChange} />
+            <Input
+              value={password}
+              onChange={handlePasswordChange}
+              placeholder="Password"
+              type="password"
+            />
 
-            <button>Login</button>
-
-            {/* 
             <Button
-            variant="contained"
-            color="success"
-            size="small"
-            sx={{ marginTop: "15px" }}
+              variant="contained"
+              type="submit"
+              size="small"
+              sx={{ marginTop: "15px" }}
             >
-            Login
-          </Button> */}
+              Login
+            </Button>
           </form>
         </Grid>
       </Box>

@@ -8,7 +8,6 @@ router.get("/users", async (req, res) => {
   try {
     const con = await mysql.createConnection(MYSQL_CONFIG);
     const users = `select id, name, surname, email, DATE_FORMAT(date_of_birth, '%Y-%m-%d') as date_of_birth, TIMESTAMPDIFF(YEAR,date_of_birth,CURDATE()) as age from users`;
-
     const result = await con.execute(users);
 
     res.send(result[0]).end();
@@ -44,7 +43,8 @@ router.post("/users", async (req, res) => {
     return res
       .status(400)
       .send({
-        error: "name, surname, email, date_of_birth and event_ids are required",
+        error:
+          "Name, surname, email, date_of_birth and event_ids are required.",
       })
       .end();
   }
@@ -56,7 +56,7 @@ router.post("/users", async (req, res) => {
     return res
       .status(400)
       .send({
-        error: "event_ids should be an array of numbers",
+        error: "Event_ids should be an array of numbers.",
       })
       .end();
   }
@@ -77,7 +77,7 @@ router.post("/users", async (req, res) => {
 
     await con.end();
 
-    res.status(201).send({ message: "User created" }).end();
+    res.status(200).send({ message: "User created" }).end();
   } catch (error) {
     res.status(500).send(console.error({ error })).end();
   }

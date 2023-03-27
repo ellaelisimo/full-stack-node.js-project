@@ -1,3 +1,4 @@
+import { Box, Button, List, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { User } from "./User";
@@ -21,18 +22,42 @@ export const Users = () => {
 
   return (
     <>
-      <h1>Users</h1>
-      <button
-        onClick={() => {
-          navigate("/users/create");
+      <Typography
+        variant="h1"
+        component="h1"
+        sx={{ textAlign: "center", margin: "1rem" }}
+      >
+        Users
+      </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "right",
+          alignItems: "right",
+          flexWrap: "nowrap",
+          flexDirection: { xs: "column", sm: "row" },
         }}
       >
-        Create User
-      </button>
+        <Button
+          variant="contained"
+          sx={{ margin: "1rem" }}
+          onClick={() => {
+            navigate("/users/create");
+          }}
+        >
+          Create User
+        </Button>
+      </Box>
 
-      {users.map((user: any) => (
-        <User key={user.id} user={user} />
-      ))}
+      <List
+        sx={{
+          maxWidth: "80%",
+        }}
+      >
+        {users.map((user: any) => (
+          <User key={user.id} user={user} />
+        ))}
+      </List>
     </>
   );
 };

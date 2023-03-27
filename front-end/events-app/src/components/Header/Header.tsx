@@ -1,39 +1,26 @@
+import { AppBar, Button, Toolbar } from "@mui/material";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
 import { NavLink } from "react-router-dom";
 
 export const Header = () => {
   return (
-    <Grid
-      margin="40px"
-      textAlign="center"
-      display="flex"
-      flexDirection="column"
-      justifyContent="space-between"
-      paddingBottom="10px"
-      sx={{
-        "& a": {
-          color: "black",
-          textDecoration: "none",
-          fontSize: "18px",
+    <nav>
+      <AppBar position="static">
+        <Toolbar>
+          <Button color="inherit" component={NavLink} to="/events">
+            Events
+          </Button>
 
-          ":hover": { color: "grey" },
-        },
-      }}
-    >
-      <nav>
-        <Box>
-          <NavLink to={"/events"}>Events</NavLink>
-        </Box>
+          <Button color="inherit" component={NavLink} to="/users">
+            Users
+          </Button>
 
-        <Box>
-          <NavLink to={"/users"}>Users</NavLink>
-        </Box>
-
-        <Box>
-          <NavLink to={"/logout"}>Logout</NavLink>
-        </Box>
-      </nav>
-    </Grid>
+          <Box sx={{ flexGrow: 1 }} />
+          <Button color="inherit" component={NavLink} to="/logout">
+            Logout
+          </Button>
+        </Toolbar>
+      </AppBar>
+    </nav>
   );
 };

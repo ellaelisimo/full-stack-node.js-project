@@ -1,18 +1,45 @@
+import { ListItem, ListItemText, Typography } from "@mui/material";
+
 export const Participant = (props: any) => {
   const { participant } = props;
-  const { id, name, surname, email, date_of_birth, age, date_of_registration } =
+  const { name, surname, email, date_of_birth, age, date_of_registration } =
     participant;
 
   return (
     <>
-      <h3>
-        {name} {surname}
-      </h3>
-      <p>Id: {id}</p>
-      <p>Email: {email}</p>
-      <p>DOB: {date_of_birth}</p>
-      <p>Age: {age}</p>
-      <p>Registered: {date_of_registration}</p>
+      <ListItem
+        sx={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexWrap: "nowrap",
+          flexDirection: "row",
+        }}
+      >
+        <ListItemText
+          primary={`${name} ${surname}`}
+          secondary={
+            <>
+              <Typography variant="body2" color="text.secondary">
+                {email}
+              </Typography>
+
+              <Typography variant="body2" color="text.secondary">
+                Date of birth: {date_of_birth}
+              </Typography>
+
+              <Typography variant="body2" color="text.secondary">
+                Age: {age}
+              </Typography>
+
+              <Typography variant="body2" color="text.secondary">
+                Registered: {date_of_registration}
+              </Typography>
+            </>
+          }
+        />
+      </ListItem>
     </>
   );
 };

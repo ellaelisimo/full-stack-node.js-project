@@ -23,16 +23,25 @@ export const Events = () => {
 
   return (
     <>
-      <Box>
-        <Grid>
-          <Typography variant="h1" fontSize="35px">
-            Events
-          </Typography>
+      <Typography
+        variant="h1"
+        component="h1"
+        sx={{ textAlign: "center", margin: "1rem" }}
+      >
+        Events
+      </Typography>
 
-          {events.map((event: any) => (
-            <EventCard key={event.id} event={event} />
-          ))}
-        </Grid>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+          flexWrap: "wrap",
+        }}
+      >
+        {events.map((event: any) => (
+          <EventCard key={event.id} event={event} />
+        ))}
       </Box>
     </>
   );

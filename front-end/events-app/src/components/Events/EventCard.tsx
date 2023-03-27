@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
 export const EventCard = (props: any) => {
@@ -10,7 +11,15 @@ export const EventCard = (props: any) => {
       <p>Id: {id}</p>
       <p>Starts: {date_starts}</p>
       <p>Ends: {date_ends}</p>
-      <Link to={`/events/${id}`}>View</Link>
+
+      <Button
+        variant="contained"
+        component={Link}
+        to={`/events/${id}`}
+        sx={{ width: "50px" }}
+      >
+        View
+      </Button>
     </div>
   );
 };
