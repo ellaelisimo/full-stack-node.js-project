@@ -77,7 +77,6 @@ export const CreateUser = () => {
         <Grid
           container
           display="flex"
-          // textAlign="center"
           justifyContent="center"
           alignItems="center"
           flexDirection="column"
