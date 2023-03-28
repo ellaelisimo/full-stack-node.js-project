@@ -35,7 +35,7 @@ export const EventDetails = () => {
     {
       id: 8,
       imageUrl:
-        "https://cdn-az.allevents.in/events5/banners/b4383a35856a4bf0e4a8c0415c58e14d6f331601c73e53e09d71a6c081cd8ede-rimg-w1200-h676-gmir.jpg?v=1677830203",
+        "f2eefe0b125cd1d652c228332b2abd1f5d05eba70e435c54b959430703ae950a",
     },
     {
       id: 9,
@@ -89,12 +89,12 @@ export const EventDetails = () => {
             <img
               src={eventImage?.imageUrl}
               alt="Event Image"
-              style={{ maxWidth: "100%", height: "auto" }}
+              style={{ width: "800px", height: "400px" }}
             />
           </CardMedia>
           <CardContent
             sx={{
-              marginTop: "250px",
+              marginTop: "150px",
             }}
           >
             <Typography variant="h2" color="green">
